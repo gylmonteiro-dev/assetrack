@@ -3,14 +3,14 @@ from . import views
 
 urlpatterns = [
     path("organizacoes/", views.OrganizationListCreateView.as_view(), name="list-create-organizations"),
-    # path("organizacoes/<int:pk>", ..., name="retrieve-update-destroy-organization"),
+    path("organizacoes/<int:pk>/", views.OrganizationRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-organization"),
 
-#     path("departments/", ..., name="list-create-departments"),
-#     path("departments/<int:pk>", ..., name="retrieve-update-destroy-departments"),
+    path("departments/", views.DepartmentListCreateView.as_view(), name="list-create-departments"),
+    path("departments/<int:pk>/", views.DepartmentRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-departments"),
 
-#     path("divisions/", ..., name="list-create-divisions"),
-#     path("divisions/<int:pk>", ..., name="retrieve-update-destroy-divisions"),
+    path("divisions/", views.DivisionListCreateView.as_view(), name="list-create-divisions"),
+    path("divisions/<int:pk>/", views.DivisionRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-divisions"),
 
-#     path("sectors/", ..., name="list-create-sectors"),
-#     path("sectors/<int:pk>", ..., name="retrieve-update-destroy-sectors"),
+    path("sectors/", views.SectorListCreateView.as_view(), name="list-create-sectors"),
+    path("sectors/<int:pk>/", views.SectorRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-sectors"),
 ]

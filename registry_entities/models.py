@@ -49,7 +49,7 @@ class Division(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
     company_registration_number = models.CharField(
-        max_length=20, null=True, blank=True, verbose_name="CNPJ"
+        max_length=20, null=True, blank=True, verbose_name="CNPJ", default='SEM CADASTRO'
     )
     primary_contact_number = models.CharField(
         max_length=20, null=True, blank=True, verbose_name="Contato telefônico"
@@ -71,14 +71,14 @@ class Division(models.Model):
 
 class Sector(models.Model):
     division = models.ForeignKey(Division, on_delete=models.PROTECT, verbose_name='Unidade', related_name='sectors')
-    name = models.CharField(max_length=255, unique=True, verbose_name="Nome do setor")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
-    update_at = models.DateTimeField(auto_now=True, verbose_name="Data de atualização")
+    name = models.CharField(max_length=255, unique=True, verbose_name='Nome do setor')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')
+    update_at = models.DateTimeField(auto_now=True, verbose_name='Data de atualização')
     company_registration_number = models.CharField(
-        max_length=20, null=True, blank=True, verbose_name="CNPJ"
+        max_length=20, null=True, blank=True, verbose_name='CNPJ', default='SEM CADASTRO'
     )
     primary_contact_number = models.CharField(
-        max_length=20, null=True, blank=True, verbose_name="Contato telefônico"
+        max_length=20, null=True, blank=True, verbose_name='Contato telefônico'
     )
     primary_contact = models.ForeignKey(
         User,
