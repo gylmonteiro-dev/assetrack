@@ -12,6 +12,11 @@ CONDITION_OPTIONS = (('NEW', 'NOVO'),
                      ('USED', 'USADO'),
                      ('DAMAGED', 'DANIFICADO'))
 
+AVAILABILITY_OPTIONS = (('IN USE', 'EM USO'),
+                        ('IN STOCK', 'EM ESTOQUE'),
+                        ('IN REPAIR', 'EM MANUTENÇÃO'),
+                        ('UNAVAILABLE', 'INDISPONÍVEL'))
+
 # Create your models here.
 class CostCenter(models.Model):
     name = models.CharField(max_length=255, verbose_name='Nome do centro de custo')
@@ -66,6 +71,7 @@ class RegisterAsset(models.Model):
     amount = models.IntegerField(validators=[MinValueValidator(1, 'Não pode cadastrar com quantidade menor que 1')])
     observation = models.TextField(null=True, blank=True, verbose_name='Observação')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')
+    availability = models.CharField(max_length=50, choices=AVAILABILITY_OPTIONS, verbose_name='Disponibilidade', null=True, blank=True)
     update_at = models.DateTimeField(auto_now=True, verbose_name='Data de atualização')
 
     def __str__(self) -> str:
