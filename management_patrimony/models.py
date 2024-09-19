@@ -65,7 +65,7 @@ class Supplier(models.Model):
 class RegisterAsset(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Usuário', related_name='registros_de_ativos')
     asset = models.ForeignKey(Asset, on_delete=models.PROTECT, verbose_name='Ativo', related_name='registros_de_ativos')
-    sector = models.ForeignKey(Sector, on_delete=models.PROTECT, verbose_name='Setor', related_name='registro_de_ativos')
+    sector = models.ForeignKey(Sector, on_delete=models.PROTECT, verbose_name='Setor', related_name='registros_de_ativos')
     cost_center = models.ForeignKey(CostCenter, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Centro de custo', related_name='registros_de_ativos')
     supplier = models.ForeignKey(Supplier, on_delete=models.PROTECT, null=True, blank=True, verbose_name='Fornecedor', related_name='registros_de_ativos')
     amount = models.IntegerField(validators=[MinValueValidator(1, 'Não pode cadastrar com quantidade menor que 1')])
