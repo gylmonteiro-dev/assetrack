@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Organization, Division, Sector, Department
-
+from management_patrimony.models import RegisterAsset
 
 class OrganizationModelSerializer(serializers.ModelSerializer):
 
@@ -43,5 +43,8 @@ class SectorModelSerializer(serializers.ModelSerializer):
 
 
     def get_amount_assets(self, obj):
-        print(obj)
-        return 5
+        # print(obj.registros_de_ativos.all().count())
+        actives = RegisterAsset.objects.filter(sector=obj)
+        dict_actives  = [{'id': active.asset.id ,'Ativo': active.asset.name, 'Preço': active.asset.price} for active in actives]
+
+        return dict_actives
