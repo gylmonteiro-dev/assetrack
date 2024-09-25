@@ -36,7 +36,6 @@ class Category(models.Model):
 
 
 class Asset(models.Model):
-    # sector = models.ForeignKey(Sector, on_delete=models.PROTECT, verbose_name='Setor', related_name='ativos')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Categoria', related_name='ativos')
     name = models.CharField(max_length=255, verbose_name='Nome')
     model = models.CharField(max_length=100, null=True, blank=True, verbose_name='Modelo')
