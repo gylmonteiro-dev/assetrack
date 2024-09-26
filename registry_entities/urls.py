@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("organizacoes/", views.OrganizationListCreateView.as_view(), name="list-create-organizations"),
-    path("organizacoes/<int:pk>/", views.OrganizationRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-organization"),
+    path("organizations/", views.OrganizationListCreateView.as_view(), name="list-create-organizations"),
+    path("organizations/<int:pk>/", views.OrganizationRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-organization"),
 
     path("departments/", views.DepartmentListCreateView.as_view(), name="list-create-departments"),
     path("departments/<int:pk>/", views.DepartmentRetrieveUpdateDestroyView.as_view(), name="retrieve-update-destroy-departments"),
