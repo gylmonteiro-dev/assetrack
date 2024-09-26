@@ -1,12 +1,13 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from core.permissions import GlobalPermissionClass
 from .models import Asset, Category, CostCenter, RegisterAsset, Supplier
 from .serializers import AssetModelSerializer, CategoryModelSerializer, CostCenterModelSerializer, RegisterAssetModelSerializer, SupplierModelSerializer
 # Create your views here.
 
 
 class AssetListCreateView(ListCreateAPIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, GlobalPermissionClass)
     queryset = Asset.objects.all()
     serializer_class  = AssetModelSerializer
 
