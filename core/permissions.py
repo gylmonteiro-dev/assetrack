@@ -11,7 +11,8 @@ class GlobalPermissionClass(permissions.BasePermission):
 
     }
     def has_permission(self, request, view):
-        codename = __get_codename(method=request.method, view=view)
+        codename = self.__get_codename(method=request.method, view=view)
+        print(codename)
 
         if codename:
             return request.user.has_perm(codename)
@@ -20,10 +21,14 @@ class GlobalPermissionClass(permissions.BasePermission):
     
 
     def __get_codename(self, method, view):
+        
         try:
-            model_name = view.queryset.model.__meta.model_name
-            app_label = view.queryset.model.__meta.app_label
-            view_action = __get_method(method)
+            model_name = view.queryset.model._meta.model_name
+        
+            app_label = view.queryset.model._meta.app_label
+            
+            view_action = self.__get_method(method)
+        
             return f'{app_label}.{view_action}_{model_name}'
         except:
             return None
@@ -34,3 +39,15 @@ class GlobalPermissionClass(permissions.BasePermission):
         if action:
             return action
         return None
+
+
+class GlobalUserObjectPermission(permissions.BasePermission):
+
+    # def has_permission(self, request, view):
+        
+    #     print(request.method)
+    #     return False
+
+    def has_object_permission(self, request, view, obj):
+        print(obj)
+        return False
