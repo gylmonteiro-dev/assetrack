@@ -8,67 +8,234 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registry_entities', '0001_initial'),
+        ("registry_entities", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organization',
-            name='name',
-            field=models.CharField(max_length=255, unique=True, verbose_name='Nome da organização'),
+            model_name="organization",
+            name="name",
+            field=models.CharField(
+                max_length=255, unique=True, verbose_name="Nome da organização"
+            ),
         ),
         migrations.AlterField(
-            model_name='organization',
-            name='primary_contact',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Responsável'),
+            model_name="organization",
+            name="primary_contact",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Responsável",
+            ),
         ),
         migrations.CreateModel(
-            name='Department',
+            name="Department",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True, verbose_name='Nome do departamento')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')),
-                ('update_at', models.DateTimeField(auto_now=True, verbose_name='Data de atualização')),
-                ('company_registration_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='CNPJ')),
-                ('primary_contact_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='Contato telefônico')),
-                ('organization', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='departments', to='registry_entities.organization', verbose_name='Organização')),
-                ('primary_contact', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Responsável')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=255, unique=True, verbose_name="Nome do departamento"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de criação"
+                    ),
+                ),
+                (
+                    "update_at",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Data de atualização"
+                    ),
+                ),
+                (
+                    "company_registration_number",
+                    models.CharField(
+                        blank=True, max_length=20, null=True, verbose_name="CNPJ"
+                    ),
+                ),
+                (
+                    "primary_contact_number",
+                    models.CharField(
+                        blank=True,
+                        max_length=20,
+                        null=True,
+                        verbose_name="Contato telefônico",
+                    ),
+                ),
+                (
+                    "organization",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="departments",
+                        to="registry_entities.organization",
+                        verbose_name="Organização",
+                    ),
+                ),
+                (
+                    "primary_contact",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Responsável",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Division',
+            name="Division",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True, verbose_name='Nome da unidade')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')),
-                ('update_at', models.DateTimeField(auto_now=True, verbose_name='Data de atualização')),
-                ('company_registration_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='CNPJ')),
-                ('primary_contact_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='Contato telefônico')),
-                ('department', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='units', to='registry_entities.department', verbose_name='Departamento')),
-                ('primary_contact', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Responsável')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=255, unique=True, verbose_name="Nome da unidade"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de criação"
+                    ),
+                ),
+                (
+                    "update_at",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Data de atualização"
+                    ),
+                ),
+                (
+                    "company_registration_number",
+                    models.CharField(
+                        blank=True, max_length=20, null=True, verbose_name="CNPJ"
+                    ),
+                ),
+                (
+                    "primary_contact_number",
+                    models.CharField(
+                        blank=True,
+                        max_length=20,
+                        null=True,
+                        verbose_name="Contato telefônico",
+                    ),
+                ),
+                (
+                    "department",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="units",
+                        to="registry_entities.department",
+                        verbose_name="Departamento",
+                    ),
+                ),
+                (
+                    "primary_contact",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Responsável",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Sector',
+            name="Sector",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True, verbose_name='Nome do setor')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')),
-                ('update_at', models.DateTimeField(auto_now=True, verbose_name='Data de atualização')),
-                ('company_registration_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='CNPJ')),
-                ('primary_contact_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='Contato telefônico')),
-                ('division', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='sectors', to='registry_entities.division', verbose_name='Unidade')),
-                ('primary_contact', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Responsável')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=255, unique=True, verbose_name="Nome do setor"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de criação"
+                    ),
+                ),
+                (
+                    "update_at",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Data de atualização"
+                    ),
+                ),
+                (
+                    "company_registration_number",
+                    models.CharField(
+                        blank=True, max_length=20, null=True, verbose_name="CNPJ"
+                    ),
+                ),
+                (
+                    "primary_contact_number",
+                    models.CharField(
+                        blank=True,
+                        max_length=20,
+                        null=True,
+                        verbose_name="Contato telefônico",
+                    ),
+                ),
+                (
+                    "division",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name="sectors",
+                        to="registry_entities.division",
+                        verbose_name="Unidade",
+                    ),
+                ),
+                (
+                    "primary_contact",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Responsável",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]

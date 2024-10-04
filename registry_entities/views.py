@@ -1,8 +1,15 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Department, Division, Sector, Organization
-from .serializers import OrganizationModelSerializer, DivisionModelSerializer, SectorModelSerializer, SectorListSerializer, DepartmentModelSerializer
+from .serializers import (
+    OrganizationModelSerializer,
+    DivisionModelSerializer,
+    SectorModelSerializer,
+    SectorListSerializer,
+    DepartmentModelSerializer,
+)
 from core.permissions import GlobalPermissionClass
+
 # Create your views here.
 
 
@@ -37,7 +44,7 @@ class SectorListCreateView(generics.ListCreateAPIView):
 
     def get_serializer_class(self):
 
-        if self.request.method == 'GET':
+        if self.request.method == "GET":
             return SectorListSerializer
         return SectorModelSerializer
 

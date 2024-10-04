@@ -15,18 +15,60 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Organization',
+            name="Organization",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, unique=True, verbose_name='Nome')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')),
-                ('update_at', models.DateTimeField(auto_now=True, verbose_name='Data de atualização')),
-                ('company_registration_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='CNPJ')),
-                ('primary_contact_number', models.CharField(blank=True, max_length=20, null=True, verbose_name='Contato telefônico')),
-                ('primary_contact', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=255, unique=True, verbose_name="Nome"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data de criação"
+                    ),
+                ),
+                (
+                    "update_at",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Data de atualização"
+                    ),
+                ),
+                (
+                    "company_registration_number",
+                    models.CharField(
+                        blank=True, max_length=20, null=True, verbose_name="CNPJ"
+                    ),
+                ),
+                (
+                    "primary_contact_number",
+                    models.CharField(
+                        blank=True,
+                        max_length=20,
+                        null=True,
+                        verbose_name="Contato telefônico",
+                    ),
+                ),
+                (
+                    "primary_contact",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]

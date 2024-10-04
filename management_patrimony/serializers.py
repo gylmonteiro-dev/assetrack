@@ -5,7 +5,7 @@ from .models import Asset, Category, CostCenter, RegisterAsset, Supplier
 class AssetModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asset
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CategoryModelSerializer(serializers.ModelSerializer):

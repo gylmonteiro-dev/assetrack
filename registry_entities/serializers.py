@@ -2,11 +2,12 @@ from rest_framework import serializers
 from .models import Organization, Division, Sector, Department
 from management_patrimony.models import RegisterAsset
 
+
 class OrganizationModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Organization
-        fields = '__all__'
+        fields = "__all__"
 
 
 class DivisionModelSerializer(serializers.ModelSerializer):
@@ -14,7 +15,7 @@ class DivisionModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Division
-        fields = '__all__'
+        fields = "__all__"
 
     def get_amount_assets(self, obj):
         sectors = obj.sectors.all()
@@ -22,7 +23,7 @@ class DivisionModelSerializer(serializers.ModelSerializer):
         for sector in sectors:
             assets = sector.registros_de_ativos.all()
             for asset in assets:
-                total_patrimony+= (asset.asset.price)
+                total_patrimony += asset.asset.price
         return total_patrimony
 
 
@@ -30,15 +31,14 @@ class DepartmentModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
-        fields = '__all__'
+        fields = "__all__"
 
 
 class SectorModelSerializer(serializers.ModelSerializer):
 
-
     class Meta:
         model = Sector
-        fields = '__all__'
+        fields = "__all__"
 
 
 class SectorListSerializer(serializers.ModelSerializer):
@@ -48,7 +48,7 @@ class SectorListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sector
-        fields = ['id', 'name', 'division', 'amount_assets']
+        fields = ["id", "name", "division", "amount_assets"]
 
     def get_amount_assets(self, obj):
         # print(obj.registros_de_ativos.all().count())
@@ -65,5 +65,4 @@ class SectorListSerializer(serializers.ModelSerializer):
         return dict_actives
 
     def get_division(self, obj):
-        return {'id': obj.division.id,
-                'name': obj.division.name}
+        return {"id": obj.division.id, "name": obj.division.name}

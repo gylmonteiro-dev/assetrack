@@ -6,12 +6,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('registry_entities', '0003_alter_division_company_registration_number_and_more'),
+        (
+            "registry_entities",
+            "0003_alter_division_company_registration_number_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='division',
-            options={'ordering': ['created_at']},
+            name="division",
+            options={"ordering": ["created_at"]},
         ),
     ]
