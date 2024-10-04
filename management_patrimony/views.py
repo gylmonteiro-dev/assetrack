@@ -1,5 +1,4 @@
-
-from django.db.models import Avg, Count, Max, Min
+from django.db.models import Avg, Count, F
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -28,9 +27,12 @@ class AssetStatisticsView(APIView):
 
     def get (self, request):
         average_price = self.queryset.aggregate(Avg('price'))['price__avg']
-        category_counts = self.queryset.values('category').annotate(count=Count('name'))
+        category_counts = self.queryset.values(category_counts=F("category__name")).annotate(
+            count=Count("id")
+        )
+        print(self.queryset.values("category__name"))
         most_expensive = self.queryset.order_by('-price').first().name
-        
+
         data = {'average_price': average_price,
                 'category_counts': category_counts,
                 'most_expensive': most_expensive
