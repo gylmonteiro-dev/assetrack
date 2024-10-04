@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Department, Division, Sector, Organization
-from .serializers import OrganizationModelSerializer, DivisionModelSerializer, SectorModelSerializer, DepartmentModelSerializer
+from .serializers import OrganizationModelSerializer, DivisionModelSerializer, SectorModelSerializer, SectorListSerializer, DepartmentModelSerializer
 from core.permissions import GlobalPermissionClass
 # Create your views here.
 
@@ -31,9 +31,15 @@ class DivisionRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class SectorListCreateView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated, GlobalPermissionClass)
+    permission_classes = (IsAuthenticated,)
     queryset = Sector.objects.all()
-    serializer_class = SectorModelSerializer
+    # serializer_class = SectorModelSerializer
+
+    def get_serializer_class(self):
+
+        if self.request.method == 'GET':
+            return SectorListSerializer
+        return SectorModelSerializer
 
 
 class SectorRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
