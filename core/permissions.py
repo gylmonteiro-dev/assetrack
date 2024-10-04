@@ -40,14 +40,3 @@ class GlobalPermissionClass(permissions.BasePermission):
             return action
         return None
 
-
-class GlobalUserObjectPermission(permissions.BasePermission):
-
-    # def has_permission(self, request, view):
-        
-    #     print(request.method)
-    #     return False
-
-    def has_object_permission(self, request, view, obj):
-        print(obj)
-        return False
