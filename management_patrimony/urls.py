@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('assets/', views.AssetListCreateView.as_view(), name='list-create-asserts'),
     path('assets/<int:pk>/', views.AssetRetrieveUpdateDestroyView.as_view(), name='retrieve-update-destroy-asset'),
+    path('assets/statistics/', views.AssetStatisticsView.as_view(), name='data-statistics'),
     
     path('categorys/', views.CategoryListCreateView.as_view(), name='list-create-categorys'),
     path('categorys/<int:pk>', views.CategoryRetrieveUpdateDestroyView.as_view(), name='retrieve-update-destroy-category'),
