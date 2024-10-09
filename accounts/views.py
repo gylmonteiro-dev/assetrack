@@ -1,12 +1,21 @@
 from django.contrib.auth.models import User
-from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
+from .serializers import UserModelSerializer, UserProfileSerializar
+from .models import UserProfile
 
 # Create your views here.
-class UserCreateApiView(APIView):
+class UserCreateApiView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserModelSerializer
 
-    
-    def post(self, request):
-        username = request.data.get("username")
-        print(username)
-        return Response(data={'msg': 'teste'}, status=201)
+
+class UserProfileRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserProfileSerializar
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = UserProfile.objects.filter(user=user)
+        return queryset

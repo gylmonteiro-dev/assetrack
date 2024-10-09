@@ -12,7 +12,6 @@ class GlobalPermissionClass(permissions.BasePermission):
 
     def has_permission(self, request, view):
         codename = self.__get_codename(method=request.method, view=view)
-        print(codename)
 
         if codename:
             return request.user.has_perm(codename)
@@ -36,4 +35,4 @@ class GlobalPermissionClass(permissions.BasePermission):
         action = self.method_to_action.get(method)
         if action:
             return action
-        return None
+        
