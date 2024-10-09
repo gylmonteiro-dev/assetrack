@@ -8,4 +8,3 @@ from .models import UserProfile
 def user_post_save(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-   

@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .serializers import UserModelSerializer, UserProfileSerializar
 from .models import UserProfile
 
+
 # Create your views here.
 class UserCreateApiView(CreateAPIView):
     queryset = User.objects.all()

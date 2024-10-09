@@ -35,4 +35,3 @@ class GlobalPermissionClass(permissions.BasePermission):
         action = self.method_to_action.get(method)
         if action:
             return action
-        
