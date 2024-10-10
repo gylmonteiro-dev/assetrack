@@ -10,4 +10,5 @@ urlpatterns = [
         views.UserProfileRetrieveUpdateDestroyView.as_view(),
         name="retrieve-update-delete-user_profile",
     ),
+    #path("user_profile/set_organization/", views.SetProfileUserToOrganization.as_view(), name="set-organization"),
 ]
